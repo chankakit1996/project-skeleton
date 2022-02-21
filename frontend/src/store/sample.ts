@@ -1,15 +1,15 @@
-import { ActionContext } from 'vuex';
+import { ActionContext, ActionPayload } from 'vuex';
 
 interface State {}
 
 const state: State = {};
 
-const sample = {
+export const sample = {
     namespaced: true,
     state: state,
     getters: {},
     mutations: {
-        set(state: State, payload: Object) {
+        set(state: State, payload: any) {
             const keys = Object.keys(payload);
             const stateKeys = Object.keys(state);
             keys.map((key, index) => {
@@ -21,10 +21,14 @@ const sample = {
         },
     },
     actions: {
-        set(context: ActionContext<any, any>, payload: Object) {
+        set(context: ActionContext<any, any>, payload: any) {
             context.commit('set', payload);
+        },
+        sample(context: ActionContext<any, any>, payload: any) {
+            const sample = () => {
+                console.log('sample actions');
+            };
+            context.dispatch('loading/load', sample, { root: true });
         },
     },
 };
-
-export default sample;

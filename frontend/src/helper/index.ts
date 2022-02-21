@@ -14,3 +14,12 @@ export const camelCaseKeys = (obj: Array<Object> | Record<string, any>): typeof 
     }
     return obj;
 };
+
+const timeout = (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+};
+export async function sleep(fn: any, ms = 3000) {
+    await timeout(ms);
+    return fn();
+}
+
