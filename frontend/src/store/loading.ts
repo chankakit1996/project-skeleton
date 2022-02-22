@@ -1,4 +1,5 @@
 import { sleep } from '@/helper';
+import { count } from 'console';
 import { ActionContext } from 'vuex';
 
 interface State {
@@ -25,11 +26,9 @@ export const loading = {
             Object.assign(state, payload);
         },
         addCount(state: State) {
-            console.log('add count');
             state.loading += 1;
         },
         minusCount(state: State) {
-            console.log('minus count');
             state.loading -= 1;
         },
     },
@@ -39,8 +38,9 @@ export const loading = {
         },
         async load(context: ActionContext<any, any>, fn: any) {
             context.commit('addCount');
-            await sleep(fn, 1000);
+            const res = await sleep(fn, 1000);
             context.commit('minusCount');
+            return res
         },
     },
 };
