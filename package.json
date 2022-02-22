@@ -8,7 +8,7 @@
     "tsc": "tsc",
     "heroku-prebuild": "cd ./frontend && NPM_CONFIG_PRODUCTION=false npm install && npm run build",
     "heroku-postbuild": "npm run tsc",
-    "dev": "nodemon server.ts"
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
@@ -35,6 +35,7 @@
     "@types/jsonwebtoken": "^8.5.8",
     "@types/mongodb": "^4.0.7",
     "@types/node": "^17.0.18",
+    "concurrently": "^7.0.0",
     "nodemon": "^2.0.15",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
